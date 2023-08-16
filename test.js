@@ -19,18 +19,15 @@ let clothes = [
 let shoppingChart = []
 
 function additem(button_id){
-    clothes.filter(function(cloth){
-        if( button_id == cloth.id){
-            shoppingChart.push({name:cloth.name,
-                price:cloth.price,
-            id:cloth.id})
-            
-           return true
-        }else{
-            
-           return false;
-        }
-    });
+    if(shoppingChart.some(item =>  item.id == button_id)){
+        alert('product already exists')
+    }else
+    {
+
+    let item = clothes.find(cloth => button_id == cloth.id);
+    shoppingChart.push(item)
+    console.log(shoppingChart)
+    };
 }
 
 function deleteItem(deleteButton_id){
@@ -83,6 +80,7 @@ function render(){
 
 function addtochart(event){
     let button_id = event.target.id;
+    console.log(button_id)
 
 
     additem(button_id)
